@@ -18,6 +18,6 @@ Please see full code in the [IPython notebook](./AdvancedLaneLines.ipynb). Here'
 
 ## Camera Calibration
 
-1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+*Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.*
 
-
+The code started with an array of object points for the grid. Then it goes thru each chessboard image in `camera_cal/calibration*.jpg` to find the chessboard corners by calling `cv2.findChessboardCorners(...)`. If found, it will collect both object points and the points of actual corners in the image. At the end it passes all object points and image points to `cv2.calibrateCamera(...)` and return whatever returned by that function.
