@@ -1,4 +1,4 @@
-**Advanced Lane Finding Project**
+# Advanced Lane Finding Project
 
 The goals / steps of this project are the following:
 
@@ -11,17 +11,13 @@ The goals / steps of this project are the following:
 * Warp the detected lane boundaries back onto the original image.
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
-[//]: # (Image References)
-
-
-[image_c1]: ./camera_cal/c1.png "C1"
-[image_c2]: ./camera_cal/c2.png "C1"
-[image_c3]: ./camera_cal/c3.png "C1"
-
-
 
 ---
-The code for all sections below can be found at the [IPython notebook](./AdvancedLaneLines.ipynb).
+Please see full code in the [IPython notebook](./AdvancedLaneLines.ipynb). Here's the [link to my video result](./project_video.mp4).
 
-Here's a [link to my video result](./project_video.mp4)
+
+## Camera Calibration
+
+1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+
 
