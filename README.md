@@ -90,6 +90,7 @@ See `add_curvature_overlay(img, l_fit, r_fit, l_fit_r, r_fit_r, M)` function in 
 
 ## Pipeline (video)
 
+![](./writeup_images/project_video_output.jpg)
 Here's the [link to my video result](./project_video.mp4).
 
 # Discussion
