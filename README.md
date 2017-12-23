@@ -13,12 +13,11 @@ The goals / steps of this project are the following:
 
 
 ---
-Please see full code in the [Jupyter notebook](./AdvancedLaneLines.ipynb). Here's the [link to my video result](./project_video.mp4).
-
+Please see full code in the [Jupyter notebook](./AdvancedLaneLines.ipynb).
 
 ## Camera Calibration
 
-*Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.*
+*1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.*
 
 
 The code started with an array of object points for the grid. Then it goes thru each chessboard image in `camera_cal/calibration*.jpg` to find the chessboard corners by calling `cv2.findChessboardCorners(...)`. If found, it will collect both object points and the points of actual corners in the image. At the end it passes all object points and image points to `cv2.calibrateCamera(...)` to obtain camera matrix, distortion coefficients, etc.
@@ -32,7 +31,7 @@ The code started with an array of object points for the grid. Then it goes thru 
 Here are images before and after distortion correction is applied.
 ![](./writeup_images/distortion_corrected.png)
 
-*Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.*
+*2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.*
 
 See `get_threshold_binary(img)` function in the notebook for full code.
 
@@ -63,7 +62,7 @@ Here is a mapping between source points and destination points to be passed over
 
 ![](./writeup_images/perspective_transform.png)
 
-*Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?*
+*3. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?*
 
 See `curvature_detection(img, old_l_samples=[], old_r_samples=[], img_c=None)` function in the notebook for full code.
 
@@ -81,10 +80,24 @@ When one of the lane lines is dashed, it is possible nothing can be found within
 
 After the window sliding search, a list of left and right samples are collected and passed over to `np.polyfit(...)`. Lane fit model will be returned. 
 
-*Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.*
+*4. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.*
 
 See `add_curvature_overlay(img, l_fit, r_fit, l_fit_r, r_fit_r, M)` function in the notebook for code.
 
-*Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.*
+*5. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.*
 
 See `add_curvature_overlay(img, l_fit, r_fit, l_fit_r, r_fit_r, M)` function in the notebook for full code.
+
+## Pipeline (video)
+
+Here's the [link to my video result](./project_video.mp4).
+
+# Discussion
+
+*6. Briefly discuss any problems / issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?*
+
+One problem that got solved later was, earch "window" was in fixed size in early implementation. However due to perspective transformation, the real lane line appears in changing widths, where width of top portion seems to be larger than width of bottom portion of the image, as seen above. Auto increasing search window width helps in this situation.
+
+The pipeline is likely to fail when noisy in the image increases.
+
+To make it more robust, I figure maybe a mathematical model of lanes should be defined, in order to add constraints to search.
